@@ -1,10 +1,11 @@
 fastapi
 uvicorn[standard]
-autogen
-langchain
+autogen-agentchat
+autogen-ext[openai]
 chromadb
 qdrant-client
 python-dotenv
 pydantic
+openai
 transformers
 sentence-transformers
