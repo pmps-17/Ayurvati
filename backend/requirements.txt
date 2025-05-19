@@ -1,0 +1,10 @@
+fastapi
+uvicorn[standard]
+autogen
+langchain
+chromadb
+qdrant-client
+python-dotenv
+pydantic
+transformers
+sentence-transformers
