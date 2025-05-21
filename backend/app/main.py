@@ -10,13 +10,18 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Import your pipeline runner
-from backend.app.orchestrator import run_pipeline
+from orchestrator import run_pipeline
+from backend.app.routes.logs import router as logs_router
+
+
+
 
 app = FastAPI(
     title="Ayurveda Personal Doctor AI",
     version="0.1.0",
     description="AI-driven diet & wellness recommendations rooted in Ayurveda"
 )
+app.include_router(logs_router)
 
 # --- Data Models --- #
 class MoodLog(BaseModel):

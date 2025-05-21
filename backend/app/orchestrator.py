@@ -1,17 +1,35 @@
 from autogen import UserProxyAgent, AssistantAgent, GroupChat, GroupChatManager
-from chromadb import Client as ChromaClient
+from backend.app.models import SessionLocal  # Your SQLAlchemy session
+from sqlalchemy import text
+from sentence_transformers import SentenceTransformer
 
-# Initialize retrieval tool
-chroma = ChromaClient().get_or_create_collection("ayurveda")
+# Load embedding model for queries
+model = SentenceTransformer("all-MiniLM-L6-v2")
 
-class RetrieverTool:
-    def __call__(self, query: str, k: int = 5):
-        results = chroma.query(query_texts=[query], n_results=k)
-        return [m["documents"][0] for m in results["matches"]]
+# --- VECTOR DB (Postgres + pgvector) RAG Retriever ---
+class PgVectorRetriever:
+    def __init__(self, k=5):
+        self.k = k
 
-retriever = RetrieverTool()
+    async def __call__(self, query: str):
+        query_emb = model.encode(query).tolist()
+        async with SessionLocal() as session:
+            sql = text("""
+                SELECT id, title, content, embedding <#> :q_emb AS distance
+                FROM ayurveda_docs
+                ORDER BY embedding <#> :q_emb
+                LIMIT :limit
+            """)
+            result = await session.execute(sql, {"q_emb": query_emb, "limit": self.k})
+            docs = result.fetchall()
+            return [
+                {"title": row.title, "content": row.content, "distance": row.distance}
+                for row in docs
+            ]
 
-# Initialize agents
+retriever = PgVectorRetriever()
+
+# --- Initialize agents (as before) ---
 user_proxy = UserProxyAgent(name="user_proxy")
 memory_manager = AssistantAgent(name="memory_manager")
 dosha_agent = AssistantAgent(name="dosha_agent")
@@ -21,7 +39,6 @@ deficiency_agent = AssistantAgent(name="deficiency_agent")
 meal_planner_agent = AssistantAgent(name="meal_planner_agent")
 herbal_advisor_agent = AssistantAgent(name="herbal_advisor_agent")
 
-# Create a list of agents
 agents = [
     user_proxy,
     memory_manager,
@@ -33,11 +50,12 @@ agents = [
     herbal_advisor_agent
 ]
 
-# Initialize GroupChat
 group_chat = GroupChat(agents=agents, tools=[retriever], max_rounds=10, verbose=False)
-
-# Initialize GroupChatManager
 group_chat_manager = GroupChatManager(group_chat=group_chat)
 
+# --- Orchestration Function ---
+import asyncio
+
 def run_pipeline(user_input: str) -> str:
-    return group_chat_manager.run(user_input)
+    # If your pipeline/agents/tools are now async, run inside event loop
+    return asyncio.run(group_chat_manager.run(user_input))
