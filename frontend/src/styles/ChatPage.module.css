@@ -1,0 +1,84 @@
+.chatContainer {
+  min-height: 100vh;
+  background: var(--color-bg);
+  display: flex;
+  flex-direction: column;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 2rem 0.5rem 2rem;
+  background: var(--color-bg);
+  font-size: 1.2rem;
+}
+.messages {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  padding: 1.2rem 2rem;
+  overflow-y: auto;
+}
+.inputForm {
+  display: flex;
+  gap: 0.6rem;
+  padding: 1.2rem 2rem;
+  background: var(--color-bg);
+}
+.input {
+  flex: 1;
+  padding: 0.7rem 1rem;
+  border-radius: var(--border-radius);
+  border: 1px solid #b8eac7;
+  font-size: 1rem;
+  background: #fff;
+  outline: none;
+}
+.sendButton {
+  background: var(--color-accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 0.7rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.sendButton:disabled {
+  background: #b8eac7;
+  cursor: not-allowed;
+}
+.loading {
+  text-align: center;
+  color: var(--color-accent);
+  padding: 1rem 0;
+}
+.logoutButton {
+  margin-left: 1rem;
+  background: none;
+  border: none;
+  color: var(--color-accent);
+  font-size: 1rem;
+  cursor: pointer;
+}
+/* src/styles/ChatPage.module.css */
+
+.historySection {
+  margin: 1rem 0 1rem 0;
+  padding: 1rem;
+  background: var(--subtle-bg, #e6f4ea);
+  border-radius: 10px;
+  color: var(--text-color, #222);
+  font-size: 0.95rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.themeToggle {
+  margin-right: 0.8rem;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: var(--color-accent);
+  cursor: pointer;
+}

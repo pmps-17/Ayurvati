@@ -1,0 +1,11 @@
+/* src/styles/global.module.css */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', 'Roboto', sans-serif;
+  background: var(--color-bg);
+  color: var(--color-text);
+  transition: background 0.2s, color 0.2s;
+}
+* {
+  box-sizing: border-box;
+}

@@ -1,0 +1,30 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg);
+}
+.card {
+  padding: 2rem 3rem;
+  border-radius: var(--border-radius);
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(77,179,124,0.06);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.googleButton {
+  background: var(--color-accent);
+  color: #fff;
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 0.75rem 2rem;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  transition: background 0.15s;
+}
+.googleButton:hover {
+  background: var(--color-accent-light);
+}

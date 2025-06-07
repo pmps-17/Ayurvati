@@ -1,0 +1,20 @@
+.user {
+  align-self: flex-end;
+  background: var(--color-chat-user);
+  color: var(--color-text);
+  padding: 0.75rem 1rem;
+  border-radius: 16px 16px 4px 16px;
+  margin: 0.3rem 0;
+  max-width: 65%;
+  word-break: break-word;
+}
+.ai {
+  align-self: flex-start;
+  background: var(--color-chat-ai);
+  color: var(--color-text);
+  padding: 0.75rem 1rem;
+  border-radius: 16px 16px 16px 4px;
+  margin: 0.3rem 0;
+  max-width: 65%;
+  word-break: break-word;
+}

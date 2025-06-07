@@ -1,0 +1,19 @@
+/* src/styles/variables.module.css */
+:root {
+  --color-bg: #f8faf8;
+  --color-bg-dark: #212c23;
+  --color-accent: #4db37c;
+  --color-accent-light: #71d49a;
+  --color-text: #232924;
+  --color-text-dark: #e8f5ee;
+  --color-chat-user: #c8eedb;
+  --color-chat-ai: #e8f5ee;
+  --border-radius: 12px;
+}
+
+[data-theme='dark'] {
+  --color-bg: #212c23;
+  --color-text: #e8f5ee;
+  --color-chat-user: #2b4033;
+  --color-chat-ai: #27332a;
+}
