@@ -1,16 +1,20 @@
 // src/components/Header.jsx
-import React from "react";
-import styles from "../styles/Header.module.css";
-import { auth } from "../firebase";
-import { useNavigate } from "react-router-dom";
+import React from 'react'
+import styles from '../styles/Header.module.css'
+import { auth } from '../firebase'
+import { useRouter } from 'next/router'
 
 export default function Header({ user, theme, onToggleTheme }) {
-  const navigate = useNavigate();
+  const router = useRouter()
 
-  const handleLogout = () => {
-    auth.signOut();
-    navigate("/login");
-  };
+  const handleLogout = async () => {
+    try {
+      await auth.signOut()
+      router.push('/login')
+    } catch (err) {
+      console.error('Logout failed', err)
+    }
+  }
 
   return (
     <header className={styles.header}>
@@ -19,7 +23,7 @@ export default function Header({ user, theme, onToggleTheme }) {
       </div>
       <div className={styles.right}>
         <button onClick={onToggleTheme} className={styles.themeToggle}>
-          {theme === "dark" ? "🌙" : "☀️"}
+          {theme === 'dark' ? '🌙' : '☀️'}
         </button>
         {user && (
           <>
@@ -40,5 +44,5 @@ export default function Header({ user, theme, onToggleTheme }) {
         )}
       </div>
     </header>
-  );
+  )
 }

@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+      "moduleResolution": "node",
+      "target": "ESNext",
+      "module": "ESNext",
+      "baseUrl": ".",
+      "checkJs": true,            // turn on basic JS type-checking
+      "jsx": "preserve"           
+    },
+    "include": ["next-env.d.ts", "**/*.js", "**/*.jsx"],
+    "exclude": ["node_modules"]
+  }

@@ -1,3 +1,4 @@
+
 .container {
   min-height: 100vh;
   display: flex;
@@ -6,25 +7,101 @@
   background: var(--color-bg);
 }
 .card {
-  padding: 2rem 3rem;
+  background: #ffffff;
+  padding: 2rem;
   border-radius: var(--border-radius);
-  background: #fff;
-  box-shadow: 0 2px 12px rgba(77,179,124,0.06);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  max-width: 360px;
+  width: 100%;
+  text-align: center;
+}
+.logo {
+  width: 40px;
+  margin: 0 auto 1rem;
+  display: block;
+}
+.title {
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: #333;
 }
 .googleButton {
-  background: var(--color-accent);
-  color: #fff;
-  border: none;
-  border-radius: var(--border-radius);
-  padding: 0.75rem 2rem;
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
   font-size: 1rem;
+  background: #fff;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: var(--border-radius);
   cursor: pointer;
-  margin-top: 1.5rem;
-  transition: background 0.15s;
+  transition: background 0.15s, border-color 0.15s;
 }
 .googleButton:hover {
+  background: #f7f7f7;
+  border-color: #999;
+}
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 1.5rem 0;
+  color: #666;
+  font-size: 0.875rem;
+}
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: #e0e0e0;
+}
+.divider span {
+  margin: 0 0.5rem;
+  display: inline-block;
+}
+.input {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+}
+.remember {
+  display: block;
+  margin-bottom: 1.5rem;
+  font-size: 0.875rem;
+  color: #555;
+  text-align: left;
+}
+.remember input {
+  margin-right: 0.5rem;
+  vertical-align: text-bottom;
+}
+.continueButton {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  background: rgb(150, 193, 226);
+  color: #080606;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+.continueButton:hover {
   background: var(--color-accent-light);
+}
+.footer {
+  font-size: 0.875rem;
+  color: #555;
+}
+.footer a {
+  color: var(--color-accent);
+  text-decoration: none;
+}
+.footer a:hover {
+  text-decoration: underline;
 }
